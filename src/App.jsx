@@ -9,9 +9,30 @@ function App() {
   const [isResult, setIsResult] = useState(false);
   const [score, setScore] = useState(null);
   const [userAnswers, setUserAnswers] = useState({});
+  const [validationError, setValidationError] = useState(null);
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    // Кнопка сабмита исчезает при remount формы; снятие фокуса заранее
+    // предотвращает автоскролл браузера к body, который отменяет
+    // плавный скролл к результатам
+    if (document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur();
+    }
+    const unanswered = questions.filter(
+      (question) => userAnswers[question.name] === undefined,
+    );
+
+    if (unanswered.length > 0) {
+      setValidationError(
+        unanswered.length === questions.length
+          ? 'Все вопросы обязательны для ответа'
+          : `Осталось ответить на ${unanswered.length} ${unanswered.length === 1 ? 'вопрос' : unanswered.length < 5 ? 'вопроса' : 'вопросов'}`,
+      );
+      return;
+    }
+
+    setValidationError(null);
     let correctCount = 0;
     questions.forEach((question) => {
       if (userAnswers[question.name] === question.correct) {
@@ -25,6 +46,7 @@ function App() {
   const resetForm = () => {
     setIsResult(false);
     setUserAnswers({});
+    setValidationError(null);
   };
 
   return (
@@ -40,6 +62,7 @@ function App() {
           score={score}
           resetForm={resetForm}
           questions={questions}
+          validationError={validationError}
         />
       </main>
       <Footer />

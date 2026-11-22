@@ -1,6 +1,14 @@
+import { useEffect, useRef } from 'react';
+
 function Result({ score, resetForm }) {
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, []);
+
   return (
-    <section className="max-w-3xl mx-auto space-y-8">
+    <section ref={sectionRef} className="max-w-3xl mx-auto space-y-8">
       <div className="bg-white rounded-xl shadow-lg p-8 text-center border border-gray-100">
         <h2 className="text-2xl font-semibold mb-2">Ваши результаты</h2>
         <p className="mb-2">
