@@ -3,7 +3,7 @@ import Header from './components/Header.jsx';
 import Footer from './components/Footer.jsx';
 import Instruction from './components/Instruction.jsx';
 import QuizForm from './components/QuizForm.jsx';
-import questions from './data/questions.js';
+import questions from './data/questions.json';
 
 function App() {
   const [isResult, setIsResult] = useState(false);
