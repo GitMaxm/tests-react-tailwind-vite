@@ -13,9 +13,7 @@ function App() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Кнопка сабмита исчезает при remount формы; снятие фокуса заранее
-    // предотвращает автоскролл браузера к body, который отменяет
-    // плавный скролл к результатам
+    // Кнопка сабмита удаляется при remount формы; снятие фокуса заранее предотвращает автоскролл, отменяющий скролл к результатам
     if (document.activeElement instanceof HTMLElement) {
       document.activeElement.blur();
     }
@@ -50,9 +48,11 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
+    <div className="flex min-h-screen flex-col bg-gray-50">
       <Header />
-      <main className="space-y-8 flex-grow container mx-auto px-4 pb-12">
+      <main
+        className="container mx-auto flex-grow space-y-8 px-4 pb-12"
+      >
         <Instruction />
         <QuizForm
           handleSubmit={handleSubmit}
