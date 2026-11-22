@@ -4,22 +4,36 @@ function Result({ score, resetForm }) {
   const sectionRef = useRef(null);
 
   useEffect(() => {
-    sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    sectionRef.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
   }, []);
 
   return (
-    <section ref={sectionRef} className="max-w-3xl mx-auto space-y-8">
-      <div className="bg-white rounded-xl shadow-lg p-8 text-center border border-gray-100">
-        <h2 className="text-2xl font-semibold mb-2">Ваши результаты</h2>
+    <section ref={sectionRef} className="mx-auto max-w-3xl space-y-8">
+      <div
+        className="rounded-xl border border-gray-100 bg-white p-8
+          text-center shadow-lg"
+      >
+        <h2 className="mb-2 text-2xl font-semibold">
+          Ваши результаты
+        </h2>
         <p className="mb-2">
-          Правильные ответы: {score.correctCount} из {score.questionsCount}
+          Правильные ответы: {score.correctCount} из{' '}
+          {score.questionsCount}
         </p>
         <p className="mb-6">
-          Процент: {Math.round((100 * score.correctCount) / score.questionsCount)}%
+          Процент:{' '}
+          {Math.round(
+            (100 * score.correctCount) / score.questionsCount,
+          )}
+          %
         </p>
         <button
           onClick={resetForm}
-          className="bg-green-500 text-white px-6 py-2 rounded-lg font-medium"
+          className="rounded-lg bg-green-500 px-6 py-2 font-medium
+            text-white"
         >
           Пройти ещё раз
         </button>

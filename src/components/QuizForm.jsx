@@ -16,26 +16,45 @@ function QuizForm({
   ).length;
 
   return (
-    <section className="max-w-3xl mx-auto">
+    <section className="mx-auto max-w-3xl">
       {!isResult && (
-        <div className="sticky top-3 z-10 bg-white/90 backdrop-blur-sm border border-gray-100 shadow-sm rounded-lg px-4 py-2.5">
-          <div className="flex justify-between text-sm text-gray-500 mb-1.5">
+        <div
+          className="sticky top-3 z-10 rounded-lg border
+            border-gray-100 bg-white/90 px-4 py-2.5 shadow-sm
+            backdrop-blur-sm"
+        >
+          <div
+            className="mb-1.5 flex justify-between text-sm
+              text-gray-500"
+          >
             <span>
               Отвечено: {answeredCount} из {questions.length}
             </span>
-            <span>{Math.round((100 * answeredCount) / questions.length)}%</span>
+            <span>
+              {Math.round((100 * answeredCount) / questions.length)}%
+            </span>
           </div>
-          <div className="h-1.5 bg-blue-50 rounded-full overflow-hidden">
+          <div
+            className="h-1.5 overflow-hidden rounded-full bg-blue-50"
+          >
             <div
-              className="h-full bg-blue-600 rounded-full transition-all duration-300"
-              style={{ width: `${(100 * answeredCount) / questions.length}%` }}
+              className="h-full rounded-full bg-blue-600
+                transition-all duration-300"
+              style={{
+                width: `${(100 * answeredCount) / questions.length}%`,
+              }}
             />
           </div>
         </div>
       )}
-      <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
+      <div
+        className="overflow-hidden rounded-xl border border-gray-100
+          bg-white shadow-lg"
+      >
         <div className="p-6">
-          <h2 className="text-2xl font-bold text-center">Пройдите тест</h2>
+          <h2 className="text-center text-2xl font-bold">
+            Пройдите тест
+          </h2>
         </div>
         <form
           key={isResult ? 'result' : 'form'}
@@ -50,15 +69,19 @@ function QuizForm({
             isResult={isResult}
           />
           {validationError && !isResult && (
-            <p className="text-center text-red-500 font-medium" role="alert">
+            <p
+              className="text-center font-medium text-red-500"
+              role="alert"
+            >
               {validationError}
             </p>
           )}
           {!isResult && (
-            <div className="text-center pt-4">
+            <div className="pt-4 text-center">
               <button
                 type="submit"
-                className="bg-blue-600 text-white px-8 py-3 rounded-lg font-medium"
+                className="rounded-lg bg-blue-600 px-8 py-3
+                  font-medium text-white"
               >
                 Завершить тест
               </button>

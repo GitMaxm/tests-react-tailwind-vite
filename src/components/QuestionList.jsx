@@ -1,6 +1,14 @@
-function QuestionList({ userAnswers, setUserAnswers, questions, isResult }) {
+function QuestionList({
+  userAnswers,
+  setUserAnswers,
+  questions,
+  isResult,
+}) {
   const handleChange = (questionName, answerValue) => {
-    setUserAnswers((prev) => ({ ...prev, [questionName]: answerValue }));
+    setUserAnswers((prev) => ({
+      ...prev,
+      [questionName]: answerValue,
+    }));
   };
 
   return (
@@ -9,8 +17,13 @@ function QuestionList({ userAnswers, setUserAnswers, questions, isResult }) {
         const selected = userAnswers[question.name];
 
         return (
-          <fieldset key={question.name} className="space-y-4 p-4 bg-blue-50 rounded-lg">
-            <div className="text-lg font-semibold text-gray-800 px-2">{question.title}</div>
+          <fieldset
+            key={question.name}
+            className="space-y-4 rounded-lg bg-blue-50 p-4"
+          >
+            <div className="px-2 text-lg font-semibold text-gray-800">
+              {question.title}
+            </div>
             <ul className="space-y-3">
               {question.answer.map((answer) => {
                 const inputId = `${question.name}-${answer.value}`;
@@ -23,12 +36,17 @@ function QuestionList({ userAnswers, setUserAnswers, questions, isResult }) {
                 } else {
                   const isCorrect = answer.value === question.correct;
                   const isPicked = answer.value === selected;
-                  if (isCorrect) labelClass += ' !border-green-500 bg-green-50';
-                  if (isPicked && !isCorrect) labelClass += ' !border-red-500 bg-red-50';
+                  if (isCorrect)
+                    labelClass += ' !border-green-500 bg-green-50';
+                  if (isPicked && !isCorrect)
+                    labelClass += ' !border-red-500 bg-red-50';
                 }
 
                 return (
-                  <li key={answer.value} className="bg-white rounded-lg">
+                  <li
+                    key={answer.value}
+                    className="rounded-lg bg-white"
+                  >
                     <label htmlFor={inputId} className={labelClass}>
                       <input
                         id={inputId}
@@ -36,7 +54,9 @@ function QuestionList({ userAnswers, setUserAnswers, questions, isResult }) {
                         name={question.name}
                         value={answer.value}
                         checked={isSelected}
-                        onChange={() => handleChange(question.name, answer.value)}
+                        onChange={() =>
+                          handleChange(question.name, answer.value)
+                        }
                         required
                         disabled={isResult}
                         className="h-5 w-5"

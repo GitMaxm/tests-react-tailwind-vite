@@ -116,7 +116,10 @@
     "answer": [
       { "text": "useCallback", "value": "useCallback" },
       { "text": "useMemo", "value": "useMemo" },
-      { "text": "shouldComponentUpdate", "value": "shouldComponentUpdate" },
+      {
+        "text": "shouldComponentUpdate",
+        "value": "shouldComponentUpdate"
+      },
       { "text": "React.memo", "value": "React.memo" }
     ]
   },
@@ -126,8 +129,14 @@
     "correct": "micro-macro",
     "answer": [
       { "text": "Синхронное выполнение кода", "value": "sync" },
-      { "text": "Приоритет только у макрозадач", "value": "macrotasks" },
-      { "text": "Очередь микрозадач и макрозадач", "value": "micro-macro" },
+      {
+        "text": "Приоритет только у макрозадач",
+        "value": "macrotasks"
+      },
+      {
+        "text": "Очередь микрозадач и макрозадач",
+        "value": "micro-macro"
+      },
       { "text": "Случайный порядок выполнения", "value": "random" }
     ]
   }
